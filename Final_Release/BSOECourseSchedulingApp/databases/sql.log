@@ -1,0 +1,1452 @@
+timestamp: 2021-04-29T18:34:59.334550
+CREATE TABLE "py4web_session"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "rkey" CHAR(512),
+    "rvalue" TEXT,
+    "expiration" INTEGER,
+    "created_on" TIMESTAMP,
+    "expires_on" TIMESTAMP
+);
+success!
+timestamp: 2021-04-29T18:34:59.344523
+CREATE TABLE "auth_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "email" CHAR(512) UNIQUE,
+    "password" CHAR(512),
+    "first_name" CHAR(512),
+    "last_name" CHAR(512),
+    "sso_id" CHAR(512),
+    "action_token" CHAR(512),
+    "last_password_change" TIMESTAMP,
+    "past_passwords_hash" TEXT
+);
+success!
+timestamp: 2021-04-29T18:34:59.353499
+CREATE TABLE "auth_user_tag_groups"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "path" CHAR(512),
+    "record_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2021-04-29T19:22:45.581881
+CREATE TABLE "contact"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "first_name" CHAR(512),
+    "last_name" CHAR(512),
+    "user_email" CHAR(512)
+);
+success!
+timestamp: 2021-04-29T19:45:02.201305
+CREATE TABLE "number"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "number" CHAR(512),
+    "contact_id" INTEGER REFERENCES "contact" ("id") ON DELETE CASCADE  ,
+    "type" CHAR(512)
+);
+success!
+timestamp: 2021-10-29T22:21:50.059592
+CREATE TABLE "major"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "name" CHAR(512),
+    "requirement_name" CHAR(512)
+);
+success!
+timestamp: 2021-10-29T22:21:50.067573
+CREATE TABLE "student"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "student_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "major_id" INTEGER REFERENCES "major" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2021-10-29T22:21:50.074552
+CREATE TABLE "course"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "name" CHAR(512),
+    "description" CHAR(512),
+    "offered_fall" CHAR(1),
+    "offered_winter" CHAR(1),
+    "offered_spring" CHAR(1),
+    "offered_summer" CHAR(1),
+    "requirement_name" CHAR(512)
+);
+success!
+timestamp: 2021-10-29T22:21:50.081533
+CREATE TABLE "studentCourse"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "student_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "course_id" INTEGER REFERENCES "course" ("id") ON DELETE CASCADE  ,
+    "season" CHAR(512),
+    "year" CHAR(512)
+);
+success!
+timestamp: 2021-10-29T22:21:50.090509
+CREATE TABLE "requirement"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "requirement_name" CHAR(512),
+    "type" CHAR(512),
+    "course_requirement_name" CHAR(512),
+    "course_or_requirement" CHAR(1)
+);
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+timestamp: 2021-10-31T01:01:31.205290
+CREATE TABLE "scheduleRow"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "student_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "depth" INTEGER,
+    "fall" CHAR(512),
+    "winter" CHAR(512),
+    "spring" CHAR(512),
+    "summer" CHAR(512)
+);
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "studentCourse";
+DELETE FROM sqlite_sequence WHERE name='studentCourse'
+success!
+DELETE FROM "scheduleRow";
+DELETE FROM sqlite_sequence WHERE name='scheduleRow'
+success!
+timestamp: 2021-10-31T13:04:12.083450
+ALTER TABLE "studentCourse" ADD "period" INTEGER;
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "studentCourse";
+DELETE FROM sqlite_sequence WHERE name='studentCourse'
+success!
+DELETE FROM "scheduleRow";
+DELETE FROM sqlite_sequence WHERE name='scheduleRow'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "studentCourse";
+DELETE FROM sqlite_sequence WHERE name='studentCourse'
+success!
+DELETE FROM "scheduleRow";
+DELETE FROM sqlite_sequence WHERE name='scheduleRow'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "studentCourse";
+DELETE FROM sqlite_sequence WHERE name='studentCourse'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "studentCourse";
+DELETE FROM sqlite_sequence WHERE name='studentCourse'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "studentCourse";
+DELETE FROM sqlite_sequence WHERE name='studentCourse'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "studentCourse";
+DELETE FROM sqlite_sequence WHERE name='studentCourse'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "studentCourse";
+DELETE FROM sqlite_sequence WHERE name='studentCourse'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "studentCourse";
+DELETE FROM sqlite_sequence WHERE name='studentCourse'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "studentCourse";
+DELETE FROM sqlite_sequence WHERE name='studentCourse'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "studentCourse";
+DELETE FROM sqlite_sequence WHERE name='studentCourse'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "studentCourse";
+DELETE FROM sqlite_sequence WHERE name='studentCourse'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "studentCourse";
+DELETE FROM sqlite_sequence WHERE name='studentCourse'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "studentCourse";
+DELETE FROM sqlite_sequence WHERE name='studentCourse'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "studentCourse";
+DELETE FROM sqlite_sequence WHERE name='studentCourse'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "studentCourse";
+DELETE FROM sqlite_sequence WHERE name='studentCourse'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "studentCourse";
+DELETE FROM sqlite_sequence WHERE name='studentCourse'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "studentCourse";
+DELETE FROM sqlite_sequence WHERE name='studentCourse'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "studentCourse";
+DELETE FROM sqlite_sequence WHERE name='studentCourse'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "studentCourse";
+DELETE FROM sqlite_sequence WHERE name='studentCourse'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "studentCourse";
+DELETE FROM sqlite_sequence WHERE name='studentCourse'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+timestamp: 2021-11-15T12:31:06.705707
+ALTER TABLE "student" ADD "is_admin" CHAR(1);
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+timestamp: 2021-11-29T19:47:05.265412
+ALTER TABLE "course" ADD "unit" CHAR(512);
+timestamp: 2021-11-29T19:47:05.273400
+ALTER TABLE "course" ADD "full_description" CHAR(512);
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "course";
+DELETE FROM sqlite_sequence WHERE name='course'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!
+DELETE FROM "major";
+DELETE FROM sqlite_sequence WHERE name='major'
+success!
+DELETE FROM "requirement";
+DELETE FROM sqlite_sequence WHERE name='requirement'
+success!
+DELETE FROM "student";
+DELETE FROM sqlite_sequence WHERE name='student'
+success!

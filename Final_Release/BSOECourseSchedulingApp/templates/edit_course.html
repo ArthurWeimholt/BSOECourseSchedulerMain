@@ -1,0 +1,45 @@
+[[extend 'layout.html']]
+
+
+<div class="section">
+   <!-- Put the table here -->
+    <h3 class="title is-3">Courses</h3>
+   <div class="container">
+      <table class="table is-striped is-fullwidth">
+         <tr>
+            <th>Name</th>
+            <th>Description</th>
+             <th>Units</th>
+            <th></th>
+             <th></th>
+         </tr>
+         [[for row in courses:]]
+         <tr>
+            <td>[[=row.name]]</td>
+            <td>[[=row.description]]</td>
+             <td>[[=row.unit]]</td>
+             <td>
+               <details>
+                  <summary>See detailed description:</summary>
+                  <p>[[=row.full_description]]</p>
+               </details>
+            </td>
+             <td>[[=row.warning]]</td>
+             <td>
+                 <a class="button is-link" href="[[=URL('add_course', row.id, period, season, year, signer = url_signer)]]">
+                    <span class ="icon"><i class="fa fa-plus"></i></span>
+                    <span>Select</span>
+                </a>
+             </td>
+         </tr>
+         [[pass]]
+      </table>
+   </div>
+    <div class="columns">
+    <div class="column is-one-quarter">
+         <a class="button is-success" href="[[=URL('index', signer = url_signer)]]">
+            <span>Back</span>
+        </a>
+    </div>
+    </div>
+</div>
